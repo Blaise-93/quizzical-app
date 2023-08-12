@@ -130,7 +130,17 @@ const App = () => {
         }))
     }
  
-    
+    const restart = () => {
+        setIsChecked(false)
+        setSelected([])
+        setMessage('')
+        setQuizzical(null)
+
+    }
+
+    useEffect(() => {
+        
+    })
 
 
 }
