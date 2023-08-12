@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react-dom'
+import React , {useState, useEffect}  from "react"
 import { nanoid } from 'nanoid'
 import { decode } from 'he'
 import Trivia from './containers/Trivia'
@@ -153,7 +153,78 @@ const App = () => {
         startQuizzal()
     }, [])
 
-    
+    return (
+        <div className='quiz__container'>
+            {!quizzal ? (
+                
+                <React.Fragment className="quizzal__container">
+                    <img src='assets/start1.png' className='img__one' />
+                    <img src='assets/start2.png' className='img__two' />
+                    <h1 className='start__title'>Quizzical</h1>
+                    <p>The best trivia you can ever imagine.</p>
+                    <form action="" className='params__form'>
+                        <div className='params__container'>
+                            <label htmlFor="difficulty">Choose difficulty level</label>
+                            <select               
+                                name="difficulty"
+                                id="difficulty"
+                                value={ params.difficulty }
+                                onChange={ setOptions }
+                            >
+                                <option value="any">Any difficulty</option>
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                        <div className='params__container'>
+                            <label htmlFor='category'>Kindly choose category:</label>
+                            <select name="category" id="category"
+                                value={ params.category }
+                                onChange={ setOptions }>
+                                <option value={0}>Any categ</option>
+                                    {  categories.trivia_categories
+                                    .map((category) => (
+                                        <option key={category.id}
+                                        value={categories.id}>
+                                            {category.name}
+                                        </option>
+                                    ))}
+
+                                </select>
+                        </div>  
+                    <div className='params__container'>
+                        <label htmlFor="type">Choose type:</label>
+                        <select 
+                            name="type" id="type"
+                            value={params.type}
+                            onChange={setOptions}
+                            >
+                            <option value="any">Any type</option>
+                            <option value="multiple">Multiple choice</option>
+                            <option value="boolean">True/False</option>
+                          
+                        </select>
+                    </div>  
+                    <button
+                        className='start__btn' onClick={startQuizzal}
+                        >Start quiz 
+                    </button>
+                    </form>
+                </React.Fragment>
+            ): (
+                <React.Fragment className="trivias__results">
+                    <span className="results__display">{ message }</span>
+                    <button className="trivias__btn" onClick={ continuePlaying }>
+                        Play Again 
+                    </button>
+                    <button className="restart__btn" onClick={restart}>
+                        Resest parameters
+                    </button>
+                </React.Fragment>
+            )}
+        </div>
+    )
 
 }
 
