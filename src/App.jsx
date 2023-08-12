@@ -107,8 +107,8 @@ const App = () => {
     }
     
     const shuffleArr = arr => {
-        for (let i = arr.length - 1;  i > 0; --1) {
-            const randomNum =  Math.floor(Math.random() * (1 + 1))
+        for (let i = arr.length - 1;  i > 0; --i) {
+            const randomNum =  Math.floor(Math.random() * (1 + i))
             const loopNum = arr[i]
             arr[i] = arr[randomNum]
             arr[randomNum] = loopNum
@@ -160,6 +160,7 @@ const App = () => {
                 <React.Fragment className="quizzal__container">
                     <img src='assets/start1.png' className='img__one' />
                     <img src='assets/start2.png' className='img__two' />
+                    
                     <h1 className='start__title'>Quizzical</h1>
                     <p>The best trivia you can ever imagine.</p>
                     <form action="" className='params__form'>
@@ -213,19 +214,34 @@ const App = () => {
                     </form>
                 </React.Fragment>
             ): (
-                <React.Fragment className="trivias__results">
-                    <span className="results__display">{ message }</span>
-                    <button className="trivias__btn" onClick={ continuePlaying }>
-                        Play Again 
-                    </button>
-                    <button className="restart__btn" onClick={restart}>
-                        Resest parameters
-                    </button>
-                </React.Fragment>
+                <div>
+                    <img src="assets/quiz1.png" className="img__one" />
+                    <img src="assets/quiz2.png" className="img__two" />
+                    <div className="trivias__container">
+                        {quizzHtmlData}
+                        {!isChecked ? ( 
+                            <div className="trivias__results">
+                            <button className="trivias__btn" onClick={ checkUserResult }>
+                              Check answers
+                            </button>
+                            <span className="results__warning">{ message }</span>
+                          </div>
+                        ) : (
+                            <React.Fragment className="trivias__results">
+                                <span className="results__display">{ message }</span>
+                                <button className="trivias__btn" onClick={ continuePlaying }>
+                                    Play Again 
+                                </button>
+                                <button className="restart__btn" onClick={restart}>
+                                    Resest parameters
+                                </button>
+                            </React.Fragment>       
+                        )}
+                    </div>
+                </div>
             )}
         </div>
     )
-
 }
 
 
