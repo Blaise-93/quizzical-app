@@ -3,4 +3,5 @@ import App from './App'
 import './css'
 
 
-createRoot(document.getElementById('root').render(<App/>))
+createRoot(document
+    .getElementById('root').render(<App/>))
