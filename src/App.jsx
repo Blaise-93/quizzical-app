@@ -106,6 +106,17 @@ const App = () => {
         }
     }
     
+    const shuffleArr = arr => {
+        for (let i = arr.length - 1;  i > 0; --1) {
+            const randomNum =  Math.floor(Math.random() * (1 + 1))
+            const loopNum = arr[i]
+            arr[i] = arr[randomNum]
+            arr[randomNum] = loopNum
+        }
+        console.log(arr)
+        return arr
+    }
+
     const checkUserResult = () => {
         if(selected.length === quizzal.length) {
             setIsChecked(true)
@@ -139,13 +150,12 @@ const App = () => {
     }
 
     useEffect(() => {
-        
-    })
+        startQuizzal()
+    }, [])
 
+    
 
 }
-
-
 
 
 export default App
