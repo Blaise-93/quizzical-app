@@ -1,3 +1,3 @@
-export function Trivia() {
+function Trivia() {
     return (<div>Hi</div>)
 }
