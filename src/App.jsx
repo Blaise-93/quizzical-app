@@ -17,6 +17,11 @@ const App = () => {
         type: 'any'
     })
 
+
+    /** A function that retrieves the user result lengths after
+     * it's been filtered out and returned the answer that matched
+     * the the one provided by the opentdb.
+     */
     const userResult = JSON.stringify(selected) !== "{}" && selected
     .filter((result) => quizzal
         .some((trivia) => trivia.id === result.triviaId &&
@@ -24,6 +29,8 @@ const App = () => {
          ) 
     ).length
 
+
+    /** Renders html data gotten from quiz [opentdb] database.  */
     const quizzHtmlData = quizzal ? quizzal.map((trivia, index) => (
         <Trivia
             key={index}
@@ -37,7 +44,10 @@ const App = () => {
     )): [] 
     
 
-
+    /** Provides a click event  which helps to select the data
+     * needed by the user via making sure that the triviaIndex
+     * matches with the user given input.
+      */
     const handleClick = (traviaId, resultId, value) => {
         setSelected(prevState => {
             let newSelected
@@ -61,7 +71,10 @@ const App = () => {
         })
     }
 
-
+    /** Fetch the required Quizzical objects from the database as a promise and returns 
+     * the stateless updated proof of truth for the user playing the game. If the
+     * promise fails, then error is thrown at the user.
+     */
     const startQuizzal = async e => {
         !isChecked && e.preventDefault();
         let url =  "https://opentdb.com/api.php?amount=5";
@@ -102,10 +115,15 @@ const App = () => {
 
                 )
         } catch (error) {
-            console.log(error)
+           <p className="error-message">
+                Something went wrong! Kindly refresh your browser.
+           </p>
         }
     }
-    
+
+    /** Randomnly shuffle the incomming data of answers to reduce the
+     * user's prediction. 
+      */
     const shuffleArr = arr => {
         for (let i = arr.length - 1;  i > 0; --i) {
             const randomNum =  Math.floor(Math.random() * (1 + i))
@@ -117,6 +135,10 @@ const App = () => {
         return arr
     }
 
+
+    /** Strickly check user results and send a useful message about the user/client 
+     * state of the quiz.
+       */
     const checkUserResult = () => {
         if(selected.length === quizzal.length) {
             setIsChecked(true)
@@ -126,6 +148,8 @@ const App = () => {
         }
     }
 
+
+    /** A function to keep the user abreast of the game. */
     const continuePlaying = async () => {
         await startQuizzal()
         setIsChecked(false)
@@ -133,6 +157,7 @@ const App = () => {
         setMessage("")
     }
 
+    /** Set the options of the parameters of the quiz  */
     const setOptions = e => {
         const event = e.target.name
         setParams(prevState => ({
@@ -140,7 +165,10 @@ const App = () => {
             [event]: e.target.value
         }))
     }
- 
+    
+    /** A function to keep the user in the loop of continuation of the game
+     * if the user wishes.
+       */
     const restart = () => {
         setIsChecked(false)
         setSelected([])
@@ -148,7 +176,9 @@ const App = () => {
         setQuizzical(null)
 
     }
-
+    /** To avoid side effect that may occur prior to retrieving quiz data from
+     *  opentdb.
+     */
     useEffect(() => {
         startQuizzal()
     }, [])
