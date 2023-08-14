@@ -1,9 +1,11 @@
-import React , {useState, useEffect}  from "react"
+import  {useState} from "react"
+
 import { nanoid } from 'nanoid'
 import { decode } from 'he'
+import axios from 'axios'
+
 import Trivia from './containers/Trivia'
 import {categories} from './containers/data'
-import axios from 'axios'
 
 const App = () => {
 
@@ -23,9 +25,9 @@ const App = () => {
      * the the one provided by the opentdb.
      */
     const userResult = JSON.stringify(selected) !== "{}" && selected
-    .filter((result) => quizzal
-        .some((trivia) => trivia.id === result.triviaId &&
-         trivia.correct_answer === result.value
+    .filter((answer) => quizzal
+        .some((trivia) => trivia.id === answer.triviaId &&
+         trivia.correct_answer === answer.value
          ) 
     ).length
 
@@ -36,7 +38,7 @@ const App = () => {
             key={index}
             trivia={trivia}
             selected={
-                selected.filter(result => result.trivia === trivia)[0] || {}     
+                selected.filter(answer => answer.trivia === trivia)[0] || {}     
             }
             handleClick={handleClick}
             isChecked={isChecked}
@@ -52,7 +54,7 @@ const App = () => {
         setSelected(prevState => {
             let newSelected
             const triviaIndex  = prevState
-                .findIndex(result => result.triviaId === traviaId)
+                .findIndex(answer => answer.triviaId === traviaId)
             
             if(triviaIndex >= 0) {
                 newSelected = [...prevState]
@@ -75,8 +77,8 @@ const App = () => {
      * the stateless updated proof of truth for the user playing the game. If the
      * promise fails, then error is thrown at the user.
      */
-    const startQuizzal = async e => {
-        !isChecked && e.preventDefault();
+    const startQuizzal = async event => {
+        !isChecked && event.preventDefault();
         let url =  "https://opentdb.com/api.php?amount=5";
 
         const dataType = Object.entries(params).filter(
@@ -94,19 +96,20 @@ const App = () => {
         try {
             const res = await axios.get(url)
             const data = res.data
+            console.log(data)
 
             setQuizzical(
                 data.results.map((arr) => ({
                     ...arr,
                     correct_answer: decode(arr.correct_answer),
-                    incorrect_answers: arr.incorrect_answers.map((result) => {
-                        return decode(result)
+                    incorrect_answers: arr.incorrect_answers.map((answer) => {
+                        return decode(answer)
                     }),
                     question: decode(el.question),
                     id: nanoid(),
                     answers: shuffleArr([...arr.incorrect_answers, el.correct_answer])
-                        .map(result => ({
-                            value: decode(result),
+                        .map(answer => ({
+                            value: decode(answer),
                             id: nanoid()
                         })) 
                     })
@@ -142,7 +145,13 @@ const App = () => {
     const checkUserResult = () => {
         if(selected.length === quizzal.length) {
             setIsChecked(true)
-            setMessage(`Congrats! Your scored ${userResult} / ${quizzal.length} in your quiz.`)
+            if (userResult >= 4) {
+                setMessage(`Excellent job! Your scored ${userResult} / ${quizzal.length} in your quiz.`)
+            }
+            else {
+                setMessage(`Your scored ${userResult} / ${quizzal.length} in your quiz.\
+                Work hard next time.`)
+            }
         }else {
             setMessage("Please answer all the questions given prior to checking the results")
         }
@@ -176,20 +185,15 @@ const App = () => {
         setQuizzical(null)
 
     }
-    /** To avoid side effect that may occur prior to retrieving quiz data from
-     *  opentdb.
-     */
-    useEffect(() => {
-        startQuizzal()
-    }, [])
+   
 
     return (
         <div className='quiz__container'>
             {!quizzal ? (
                 
-                <React.Fragment className="quizzal__container">
-                    <img src='assets/start1.png' className='img__one' />
-                    <img src='assets/start2.png' className='img__two' />
+                <div className="quizzal__container">
+                    <img src='src/assets/start1.png' className='img__one' />
+                    <img src='src/assets/start2.png' className='img__two' />
                     
                     <h1 className='start__title'>Quizzical</h1>
                     <p>The best trivia you can ever imagine.</p>
@@ -242,11 +246,11 @@ const App = () => {
                         >Start quiz 
                     </button>
                     </form>
-                </React.Fragment>
+                </div>
             ): (
                 <div>
-                    <img src="assets/quiz1.png" className="img__one" />
-                    <img src="assets/quiz2.png" className="img__two" />
+                    <img src="src/assets/quiz1.png" className="img__one" />
+                    <img src="src/assets/quiz2.png" className="img__two" />
                     <div className="trivias__container">
                         {quizzHtmlData}
                         {!isChecked ? ( 
@@ -257,7 +261,7 @@ const App = () => {
                             <span className="results__warning">{ message }</span>
                           </div>
                         ) : (
-                            <React.Fragment className="trivias__results">
+                            <section className="trivias__results">
                                 <span className="results__display">{ message }</span>
                                 <button className="trivias__btn" onClick={ continuePlaying }>
                                     Play Again 
@@ -265,7 +269,7 @@ const App = () => {
                                 <button className="restart__btn" onClick={restart}>
                                     Resest parameters
                                 </button>
-                            </React.Fragment>       
+                            </section>       
                         )}
                     </div>
                 </div>
