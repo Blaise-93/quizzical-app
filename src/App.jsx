@@ -197,8 +197,8 @@ function App() {
     <div className="quiz__container">
       {!quizzical ? (
         <div className="start__container">
-           <img src='src/assets/start1.png'  alt='quiz background logo' className='img__one' />
-            <img src='src/assets/start2.png' alt='quiz background logo' className='img__two' />
+           <img src='public/assets/start1.png'  alt='quiz background logo' className='img__one' />
+            <img src='public/assets/start2.png' alt='quiz background logo' className='img__two' />
             <h1 className="start__title">Quizzical</h1>
           <p>The best trivia in town</p>
           <form className="parameters__form">
@@ -252,8 +252,8 @@ function App() {
         </div>
       ) : (
         <div>
-           <img src="src/assets/quiz1.png"  alt="quiz background logo" className="img__one" />
-            <img src="src/assets/quiz2.png" alt='quiz background logo' className="img__two" />
+           <img src="public/assets/quiz1.png"  alt="quiz background logo" className="img__one" />
+            <img src="public/assets/quiz2.png" alt='quiz background logo' className="img__two" />
             <div className="trivias__container">
             {quizHtmlData}
             {!isChecked ? (
