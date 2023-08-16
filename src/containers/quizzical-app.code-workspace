@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "quizzical-app",
+			"path": "../.."
+		},
+		{
+			"name": "public",
+			"path": "../../../Desktop/db_files/quizz/public"
+		}
+	],
+	"settings": {}
+}

@@ -8,6 +8,10 @@ html, body {
     margin: 0;
 }
 
+.start__title {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
     font-family: "Inter", sans-serif;
     font-size: 1rem;
@@ -65,12 +69,17 @@ h1, h2{
 }
 
 .start__btn {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
     font-family: "Inter", sans-serif;
     align-self: center;
     width: 150px;
     padding: 1em 0;
     font-weight: 500;
     margin-top: 1em;
+    cursor: pointer;
+
 }
 
 .img__one,
@@ -97,12 +106,33 @@ h1, h2{
 
 /* Quiz */
 
-.trivias__container {
-    display: flex;
-    flex-direction: column;
-    padding: 5em 3em;
+.quiz__container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 4em;
+  align-items: center
 }
 
+.difficulty {
+  margin-top: 2em;
+}
+select{
+  margin-top: 0.5em;
+  padding: 0.65em;
+  border-radius: 0.5em;
+  font-family: 'inter', Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+option {
+  font-size: 1.4em;
+}
+
+select:focus {
+  background-color: #fafae7;
+
+
+}
 .answers__container {
     font-size: 0.625rem;
     display: flex;
@@ -111,17 +141,34 @@ h1, h2{
     margin-top: 1em;
   }
 
+
+.quiz__container {
+    position: relative;
+    background-color: #f5f7fb;
+    height: 100vh;
+    max-width: 700px;
+    margin: 0 auto;
+    min-height: 500px;
+    border: solid 1px;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5em 1em 0 1em;
+    
+  }
+  
 .trivia__title {
     font-size: 1rem;
   }
   
-.trivias__btn {
+.trivias__btn, 
+.restart__btn{
     font-family: "Inter", sans-serif;
     font-weight: 600;
     align-self: center;
     font-size: 0.625rem;
     border-radius: 10px;
-    padding: 1em 3em;
+    padding: 0.8em 2.8em;
+    cursor: pointer;
 
   } 
 
@@ -209,6 +256,21 @@ h1, h2{
     word-spacing: 0.2em;
 }
   
+
+@media (min-width:350px) and (max-width:540px) {
+   .quiz__container { 
+    font-size: 1.1em;
+    min-height:200px;
+  }
+  .trivias__btn {
+    width: 250px;
+    font-size: 0.7em;
+    padding: 1em;
+    margin-top: 0;
+    
+  /*   line-height: 2em; */
+  }
+}
   @media (min-width: 600px) {
     .trivias__results {
       flex-direction: row;
@@ -216,3 +278,109 @@ h1, h2{
       justify-content: center;
     }
   }
+
+
+  @media (min-width: 100px) and (max-width: 300px) {
+    body {
+      background-color: #f5f7fb;
+    }
+    .quiz__container {
+     
+      padding: 1em;
+      border: none;
+      padding: 2em;
+      
+    }
+    img {
+      width: 30px
+    }
+    
+    .trivias__btn, 
+    .restart__btn {
+      padding: 1em 1em
+    }
+    
+    .difficulty {
+      margin-top: 0.2em;
+      padding-left: 1em;
+    }
+    select{
+      padding: 0.5em 1em;
+      border-radius: 0.2em;
+      font-family: 'inter', Verdana, Geneva, Tahoma, sans-serif;
+
+    }
+
+    option {
+      font-size: 1em;
+    }
+
+    .start__btn {
+      padding: 0.85em;
+
+    }
+  }
+
+@media (min-width:360px) and (max-width:400px) {
+   img {
+    width: 30px;
+   }
+}
+
+@media (min-width: 760px) {
+  body {
+    background-color:#e0e5f5 /* #e7ebf7 */;
+   
+  }
+
+  select {
+    padding: 1em 2em;
+    border-radius: 1em;
+   
+
+  }
+  option {
+    font-size: 1.4em;
+  }
+
+  .quiz__container { 
+    font-size: 2em;
+    min-height: 1000px;
+  }
+
+  #difficulty,
+  #category,
+  #type {
+    font-size:0.767em;
+  }
+  .start__btn {
+    display: block;
+    margin-top: 2.5em;
+     font-size: 0.85em;
+    width: 300px;
+  }
+
+  .trivia__title {
+    font-size: 0.6em;
+    font-weight: bold;
+  }
+
+  .answers__container
+   {
+    font-size: 0.32em;
+    border-radius: .5em
+  }
+  
+  span {
+    font-size: 1.5em;
+  }
+
+  .trivias__btn {
+    width: 300px;
+    font-size: 0.7em;
+    padding: 1em;
+    margin-top: 0;
+    
+  /*   line-height: 2em; */
+  }
+}

@@ -17,6 +17,19 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
+  "keywords": [
+    "javascript",
+    "React",
+    "json",
+    "html",
+    "jasmine",
+    "css",
+    "node"
+  ],
+  "author": "Blaisemart",
+  "license": "MIT",
+  "description": "Quizzical is a trivial game built for fun and relaxation for users.",
+
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
