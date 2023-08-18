@@ -262,14 +262,21 @@ select:focus {
     font-size: 1.1em;
     min-height:200px;
   }
-  .trivias__btn {
+  .trivias__btn,
+  .restart__btn {
     width: 250px;
     font-size: 0.7em;
     padding: 1em;
-    margin-top: 0;
-    
-  /*   line-height: 2em; */
+    margin-top: 0; 
   }
+
+  .trivias__btn {
+    margin-top: 1.8em;
+  }
+  #type {
+    margin-bottom: 2em;
+  }
+
 }
   @media (min-width: 600px) {
     .trivias__results {
@@ -302,7 +309,7 @@ select:focus {
     
     .difficulty {
       margin-top: 0.2em;
-      padding-left: 1em;
+      padding-left: 0.5em;
     }
     select{
       padding: 0.5em 1em;
@@ -321,66 +328,87 @@ select:focus {
     }
   }
 
-@media (min-width:360px) and (max-width:400px) {
+@media (min-width:360px) and (max-width:420px) {
    img {
     width: 30px;
    }
+   .quiz__container { 
+    min-height: 890px;
+  }
+
+  .trivias__btn,
+  .restart__btn {
+    width: 150px;
+  }
+  .restart__btn {
+    height: 40px;
+    font-weight: 700;
+  }
 }
 
 @media (min-width: 760px) {
   body {
     background-color:#e0e5f5 /* #e7ebf7 */;
-   
+  
   }
 
   select {
-    padding: 1em 2em;
+    padding: 0.865em 1.5em;
     border-radius: 1em;
-   
-
+  
   }
   option {
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
 
   .quiz__container { 
     font-size: 2em;
-    min-height: 1000px;
+    min-height: 980px;
+
+
   }
+
 
   #difficulty,
   #category,
   #type {
-    font-size:0.767em;
+    font-size:0.647em;
   }
   .start__btn {
     display: block;
     margin-top: 2.5em;
-     font-size: 0.85em;
+     font-size: 0.65em;
     width: 300px;
   }
 
   .trivia__title {
-    font-size: 0.6em;
+    font-size: 0.9em;
     font-weight: bold;
+    padding-bottom: 1.2em;
+
   }
 
   .answers__container
    {
-    font-size: 0.32em;
+    font-size: 0.45em;
     border-radius: .5em
   }
   
   span {
-    font-size: 1.5em;
+    font-size: 1.8em;
   }
 
-  .trivias__btn {
+  .trivias__btn,
+  .restart_btn {
+    display: block;
     width: 300px;
-    font-size: 0.7em;
-    padding: 1em;
     margin-top: 0;
-    
-  /*   line-height: 2em; */
+    line-height: 30px;
+    text-align: center; 
+
   }
 }
+
+ @media (min-width: 912px) {
+  .quiz__container{min-height: 1500px;}
+ }

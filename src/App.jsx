@@ -150,12 +150,12 @@ function App() {
 
         else if (result >= 3) {
           setMessage(`Good score 👍! You scored ${result} / ${quizzical.length}
-           correct answers`);
+           correct answers.</p>`);
         }
         else {
-          setMessage(` You scored ${result} / ${quizzical.length} 
+          setMessage(`You scored ${result} / ${quizzical.length} 
           correct answers. Very Poor result, don't be discouraged.
-           Kindly try again😍 `);
+           Kindly try again😍</p> `);
         }
     }
      else {
