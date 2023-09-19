@@ -19,8 +19,7 @@ Revenue is expected to show an annual growth rate (CAGR 2023-2027) of 5.64%, res
 volume of US$32.56bn by 2027. In the Online Games market, the number of users is expected to amount to 1.2bn users by 2027.
 
 These and many more is what Quizzical a trivial game has come to join and accomplish to help our lifes more
-relaxing and greats towards academic puzzles. It is highly addictive and makes you want to come back for more
-
+relaxing and greats towards academic puzzles. It is highly addictive and makes you want to come back for mor
 
 
 Stacks used:
